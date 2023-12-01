@@ -153,7 +153,7 @@ const renderRules = {
       }
       
       return (
-        <View key={node.key} style={{flexDirection:'row',width:width-35,backgroundColor:'red'}}>
+        <View key={node.key} style={{flexDirection:'row',width:width-35}}>
           <Text style={[modifiedInheritedStylesObj, styles.ordered_list_icon]}>
             {listItemNumber}
             {node.markup}
