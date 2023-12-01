@@ -1,17 +1,18 @@
 import React from 'react';
 import {
-  Text,
+  Text,Dimensions,
   TouchableWithoutFeedback,
   View,
   Platform,
   StyleSheet,
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
-
+const {width} = Dimensions.get('screen')
 import openUrl from './util/openUrl';
 import hasParents from './util/hasParents';
 
 import textStyleProps from './data/textStyleProps';
+import CodeBlock from 'react-native-markdown-display/src/lib/CodeBlock';
 
 const renderRules = {
   // when unknown elements are introduced, so it wont break
@@ -150,9 +151,9 @@ const renderRules = {
       } else {
         listItemNumber = node.index + 1;
       }
-
+      
       return (
-        <View key={node.key} style={styles._VIEW_SAFE_list_item}>
+        <View key={node.key} style={{flexDirection:'row',width:width-35,backgroundColor:'red'}}>
           <Text style={[modifiedInheritedStylesObj, styles.ordered_list_icon]}>
             {listItemNumber}
             {node.markup}
@@ -196,6 +197,7 @@ const renderRules = {
   fence: (node, children, parent, styles, inheritedStyles = {}) => {
     // we trim new lines off the end of code blocks because the parser sends an extra one.
     let {content} = node;
+    
 
     if (
       typeof node.content === 'string' &&
@@ -203,12 +205,7 @@ const renderRules = {
     ) {
       content = node.content.substring(0, node.content.length - 1);
     }
-
-    return (
-      <Text key={node.key} style={[inheritedStyles, styles.fence]}>
-        {content}
-      </Text>
-    );
+    return <CodeBlock code={content} />
   },
 
   // Tables
