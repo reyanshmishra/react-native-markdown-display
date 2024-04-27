@@ -81,9 +81,22 @@ export function stringToTokens(
 
 export function tokensToAST(tokens: ReadonlyArray<Token>): ASTNode[];
 
+interface NestedStyles {
+  color: string;
+}
+
+// Define the main interface for the StyleSheet
+interface BlocksStyles {
+  image?: StyleSheet.NamedStyles;
+  body?: StyleSheet.NamedStyles;
+  code_inline?: StyleSheet.NamedStyles;
+  code_block?: StyleSheet.NamedStyles;
+  heading3?: StyleSheet.NamedStyles;
+}
+
 export interface MarkdownProps {
   rules?: RenderRules;
-  style?: StyleSheet.NamedStyles<any>;
+  style?: StyleSheet.NamedStyles<BlocksStyles>;
   renderer?: AstRenderer;
   markdownit?: MarkdownIt;
   mergeStyle?: boolean;
