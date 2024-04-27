@@ -205,7 +205,7 @@ const renderRules = {
     ) {
       content = node.content.substring(0, node.content.length - 1);
     }
-    return <CodeBlock code={content} />
+    return <CodeBlock key={node.key} code={content} />
   },
 
   // Tables
